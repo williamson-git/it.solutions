@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Recon | Stealth Hub</title>
+    <title>Network Node | Williamson-Git</title>
     <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --accent: #58a6ff;
+            --success: #238636;
+            --border: #30363d;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,165 +22,169 @@
         }
 
         body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
         }
 
-        /* Background Matrix-like Animation Effect */
-        .bg-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
-            z-index: -1;
-        }
-
-        .terminal-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 12px;
+        .container {
             width: 90%;
-            max-width: 650px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border-top: 4px solid #58a6ff;
+            max-width: 700px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
         }
 
+        .status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 6px 6px 0 0;
+        }
+
         .header {
-            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
-        .status-dot {
-            height: 10px;
-            width: 10px;
-            background-color: #238636;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            box-shadow: 0 0 10px #238636;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.7; }
-            70% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.7; }
+        .badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--success);
+            border: 1px solid var(--success);
+            padding: 2px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
         }
 
         h1 {
-            color: #58a6ff;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
+            font-size: 2rem;
+            color: #f0f6fc;
+            margin-bottom: 10px;
         }
 
-        .code-block {
-            background: #010409;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 3px solid #f85149;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 20px 0;
-            font-size: 0.9rem;
+        .subtitle {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
 
-        p {
+        .description {
+            color: var(--text-dim);
             line-height: 1.6;
-            color: #8b949e;
+            margin-bottom: 30px;
         }
 
-        .stats {
-            display: flex;
-            justify-content: space-between;
+        .console {
+            background: #010409;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        .line { margin-bottom: 5px; }
+        .prompt { color: var(--success); }
+        .command { color: #f0f6fc; }
+        .output { color: var(--text-dim); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             margin-top: 30px;
-            border-top: 1px solid #30363d;
-            padding-top: 20px;
-        }
-
-        .stat-box {
             text-align: center;
         }
 
-        .stat-box span {
+        .grid-item span {
             display: block;
             font-size: 1.2rem;
-            font-weight: bold;
-            color: #f0f6fc;
+            font-weight: 600;
+            color: var(--accent);
         }
 
-        .stat-box label {
+        .grid-item label {
             font-size: 0.7rem;
+            color: var(--text-dim);
             text-transform: uppercase;
-            color: #58a6ff;
         }
 
-        .footer-tag {
+        footer {
+            margin-top: 40px;
             text-align: center;
-            margin-top: 20px;
             font-size: 0.8rem;
             color: #484f58;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
         }
-
-        /* Typing Effect Simulation */
-        .typing {
-            border-right: 2px solid #58a6ff;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 3s steps(30, end) forwards, blink 0.5s infinite;
-        }
-
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { from { border-color: transparent } to { border-color: #58a6ff } }
     </style>
 </head>
 <body>
 
-    <div class="bg-effect"></div>
-
-    <div class="terminal-card">
+    <div class="container">
+        <div class="status-bar"></div>
+        
         <div class="header">
-            <div class="status-dot"></div>
-            <span style="font-size: 0.8rem; color: #238636;">SYSTEM ONLINE</span>
-            <h1>Cloud Sentinel v3.0</h1>
+            <span class="badge">Node Active</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">ID: 0x2A4F9</span>
         </div>
 
-        <p class="typing">> Initializing core security protocols...</p>
+        <h1>Infrastructure Overview</h1>
+        <div class="subtitle">Willamsons-Network @ Cloud-Sentinel</div>
+        
+        <p class="description">
+            This endpoint is currently designated for automated network reconnaissance and infrastructure testing. 
+            All traffic is logged and analyzed for optimization purposes. Integrated with GitHub Pages for 
+            seamless deployment of CNAME-validated assets.
+        </p>
 
-        <div class="code-block">
-            $ root@williamson: git run domain-scan<br>
-            [SUCCESS] Environment established.<br>
-            [READY] Waiting for CNAME distribution...
-        </div>
-
-        <p>এই ডিজিটাল স্পেসটি বর্তমানে নেটওয়ার্ক অটোমেশন এবং ক্লাউড ইনফ্রাস্ট্রাকচার টেস্ট করার জন্য ব্যবহৃত হচ্ছে। এটি একটি ডার্ক-থিম ল্যান্ডিং পেজ যা আপনার গিটহাব পেজ হিসেবে পারফেক্টলি কাজ করবে।</p>
-
-        <div class="stats">
-            <div class="stat-box">
-                <span>256-bit</span>
-                <label>Encryption</label>
+        <div class="console">
+            <div class="line">
+                <span class="prompt">williamson@node:~$</span> <span class="command">init --service=pages</span>
             </div>
-            <div class="stat-box">
-                <span>Active</span>
+            <div class="line">
+                <span class="output">[INFO] Fetching deployment status... Done.</span>
+            </div>
+            <div class="line">
+                <span class="output">[INFO] CNAME record detected. Binding successful.</span>
+            </div>
+            <div class="line">
+                <span class="prompt">williamson@node:~$</span> <span class="command">_</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="grid-item">
+                <span>SSL</span>
+                <label>Encrypted</label>
+            </div>
+            <div class="grid-item">
+                <span>API</span>
+                <label>Authenticated</label>
+            </div>
+            <div class="grid-item">
+                <span>24/7</span>
                 <label>Monitoring</label>
             </div>
-            <div class="stat-box">
-                <span>0ms</span>
-                <label>Latency</label>
-            </div>
         </div>
 
-        <div class="footer-tag">
-            Authorized Access Only | &copy; 2026 Williamson-Git
-        </div>
+        <footer>
+            &copy; 2026 Williamson-Git Infrastructure. All Rights Reserved.
+        </footer>
     </div>
 
 </body>
