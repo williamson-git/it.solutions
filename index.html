@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Recon | Stealth Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Background Matrix-like Animation Effect */
+        .bg-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
+            z-index: -1;
+        }
+
+        .terminal-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 650px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-top: 4px solid #58a6ff;
+            position: relative;
+        }
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #238636;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 10px #238636;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        h1 {
+            color: #58a6ff;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .code-block {
+            background: #010409;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #f85149;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #8b949e;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            border-top: 1px solid #30363d;
+            padding-top: 20px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-box span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f0f6fc;
+        }
+
+        .stat-box label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #58a6ff;
+        }
+
+        .footer-tag {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #484f58;
+        }
+
+        /* Typing Effect Simulation */
+        .typing {
+            border-right: 2px solid #58a6ff;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink 0.5s infinite;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { from { border-color: transparent } to { border-color: #58a6ff } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-effect"></div>
+
+    <div class="terminal-card">
+        <div class="header">
+            <div class="status-dot"></div>
+            <span style="font-size: 0.8rem; color: #238636;">SYSTEM ONLINE</span>
+            <h1>Cloud Sentinel v3.0</h1>
+        </div>
+
+        <p class="typing">> Initializing core security protocols...</p>
+
+        <div class="code-block">
+            $ root@williamson: git run domain-scan<br>
+            [SUCCESS] Environment established.<br>
+            [READY] Waiting for CNAME distribution...
+        </div>
+
+        <p>এই ডিজিটাল স্পেসটি বর্তমানে নেটওয়ার্ক অটোমেশন এবং ক্লাউড ইনফ্রাস্ট্রাকচার টেস্ট করার জন্য ব্যবহৃত হচ্ছে। এটি একটি ডার্ক-থিম ল্যান্ডিং পেজ যা আপনার গিটহাব পেজ হিসেবে পারফেক্টলি কাজ করবে।</p>
+
+        <div class="stats">
+            <div class="stat-box">
+                <span>256-bit</span>
+                <label>Encryption</label>
+            </div>
+            <div class="stat-box">
+                <span>Active</span>
+                <label>Monitoring</label>
+            </div>
+            <div class="stat-box">
+                <span>0ms</span>
+                <label>Latency</label>
+            </div>
+        </div>
+
+        <div class="footer-tag">
+            Authorized Access Only | &copy; 2026 Williamson-Git
+        </div>
+    </div>
+
+</body>
+</html>
